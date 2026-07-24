@@ -242,7 +242,7 @@ p {
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
   z-index: 40;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 4px;
 }
 
@@ -294,6 +294,9 @@ p {
 @media (max-width: 640px) {
   .grid-stats {
     grid-template-columns: 1fr;
+  }
+  .week-row[style*='repeat(5'] {
+    grid-template-columns: repeat(3, 1fr) !important;
   }
 }
 
