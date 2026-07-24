@@ -1,23 +1,27 @@
 # Futsal Pro
 
-App personal de seguimiento del programa de futsal de 9 meses (retorno a cancha / rodilla) y de la rutina matutina científica.
+App personal de seguimiento del programa de futsal de 9 meses y rutina matutina.
 
-## Cómo usarla
+## Abrir en el celular (sin PC)
+
+**URL:** https://juandoroteoflesiauni-lang.github.io/futsal-pro/
+
+1. Abrila en Chrome o Safari del teléfono  
+2. Menú → **Añadir a pantalla de inicio**  
+3. Listo para el gym: no hace falta tener la PC prendida  
+
+Los checklists, dolor y RPE se guardan en **ese** teléfono.
+
+## Desarrollo local
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abrí `http://localhost:5173`.
-
 ## Pantallas
 
-- **Hoy** — sesión del día según mesociclo/semana, checklist de ejercicios, cierre con dolor y RPE
-- **Plan** — las 9 fases × 4 semanas × 7 días (técnica, errores, alternativas de rodilla)
-- **Rutina** — protocolo matutino progresivo por mesociclo (con avisos de brackets)
-- **Progreso** — historial, racha matutina, promedios de dolor/RPE (guardado en `localStorage`)
-
-## Datos
-
-Basada en `Programa_Futsal_9_Meses.docx`, `Rutina_Matutina_Cientifica.docx` y el dashboard JSX de referencia.
+- **Hoy** — sesión del día, checklist, cierre con dolor/RPE  
+- **Plan** — 9 meses × semanas × días  
+- **Rutina** — protocolo matutino por mesociclo  
+- **Progreso** — historial y rachas  
