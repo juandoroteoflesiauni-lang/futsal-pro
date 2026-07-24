@@ -1,0 +1,319 @@
+{
+  "desktop": {
+    "page_errors": [],
+    "console": [],
+    "interactions": {
+      "plan_selector": "ok",
+      "expand_exercise": "ok",
+      "check_exercise": "ok",
+      "complete_session": "ok",
+      "morning_complete": "ok",
+      "plan_day": "ok",
+      "simf_tabs": "ok",
+      "progreso": "ok",
+      "nav": "ok"
+    },
+    "overlaps": {
+      "#/plan": [
+        {
+          "a": "1\nAdaptación Anatómica\nSem 1–4",
+          "b": "LUN\nA",
+          "area": 88.859375,
+          "aTag": "BUTTON",
+          "bTag": "BUTTON"
+        }
+      ]
+    },
+    "overflow": {}
+  },
+  "mobile": {
+    "page_errors": [],
+    "console": [],
+    "interactions": {
+      "plan_selector": "ok",
+      "expand_exercise": "ok",
+      "check_exercise": "ok",
+      "complete_session": "ok",
+      "morning_complete": "ok",
+      "plan_day": "ok",
+      "simf_tabs": "ok",
+      "progreso": "ok",
+      "nav": "ok"
+    },
+    "overlaps": {
+      "#/": [
+        {
+          "a": "Abrir SIMF",
+          "b": "◎\nRUTINA",
+          "area": 2192.421875,
+          "aTag": "A",
+          "bTag": "A"
+        },
+        {
+          "a": "Abrir SIMF",
+          "b": "↗\nPROGRESO",
+          "area": 1616.26171875,
+          "aTag": "A",
+          "bTag": "A"
+        }
+      ],
+      "#/plan": [
+        {
+          "a": "LUN\nA",
+          "b": "●\nHOY",
+          "area": 1117.5,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "MAR\nB",
+          "b": "●\nHOY",
+          "area": 312.75,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "MAR\nB",
+          "b": "▣\nPLAN",
+          "area": 709.125,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "MIÉ\nC",
+          "b": "▣\nPLAN",
+          "area": 865.125,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "MIÉ\nC",
+          "b": "◇\nSIMF",
+          "area": 156.375,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "JUE\nA",
+          "b": "◇\nSIMF",
+          "area": 1117.875,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "VIE\nB",
+          "b": "◇\nSIMF",
+          "area": 156.375,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "VIE\nB",
+          "b": "◎\nRUTINA",
+          "area": 865.125,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "SÁB\nC",
+          "b": "◎\nRUTINA",
+          "area": 709.125,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "SÁB\nC",
+          "b": "↗\nPROGRESO",
+          "area": 312.75,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "DOM\nREC",
+          "b": "↗\nPROGRESO",
+          "area": 1117.875,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        }
+      ],
+      "#/rutina": [
+        {
+          "a": "Marcar Hidratación inicial",
+          "b": "●\nHOY",
+          "area": 484,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "Hidratación inicial\n›",
+          "b": "●\nHOY",
+          "area": 75.46875,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "Hidratación inicial\n›",
+          "b": "▣\nPLAN",
+          "area": 1503.46875,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "Hidratación inicial\n›",
+          "b": "◇\nSIMF",
+          "area": 1503.796875,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "Hidratación inicial\n›",
+          "b": "◎\nRUTINA",
+          "area": 1503.46875,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        },
+        {
+          "a": "Hidratación inicial\n›",
+          "b": "↗\nPROGRESO",
+          "area": 747.796875,
+          "aTag": "BUTTON",
+          "bTag": "A"
+        }
+      ]
+    },
+    "overflow": {
+      "#/": [
+        {
+          "text": "Clamshell con banda (almeja)\n4\n›",
+          "tag": "BUTTON",
+          "className": "ex-top",
+          "left": 76,
+          "right": 444,
+          "docW": 390
+        },
+        {
+          "text": "4",
+          "tag": "SPAN",
+          "className": "rpe mid",
+          "left": 401,
+          "right": 429,
+          "docW": 390
+        },
+        {
+          "text": "›",
+          "tag": "SPAN",
+          "className": "chev",
+          "left": 439,
+          "right": 444,
+          "docW": 390
+        },
+        {
+          "text": "Sem 1: 3×15/lado · Sem 2–3: 3×20/lado · Sem 4: 2×1",
+          "tag": "DIV",
+          "className": "ex-meta",
+          "left": 76,
+          "right": 444,
+          "docW": 390
+        },
+        {
+          "text": "Sem 1: 3×15/lado · Sem 2–3: 3×20/lado · Sem 4: 2×1",
+          "tag": "SPAN",
+          "className": "chip ",
+          "left": 76,
+          "right": 444,
+          "docW": 390
+        },
+        {
+          "text": "RDL bilateral con mancuernas",
+          "tag": "SPAN",
+          "className": "ex-name",
+          "left": 76,
+          "right": 516,
+          "docW": 390
+        },
+        {
+          "text": "7",
+          "tag": "SPAN",
+          "className": "rpe high",
+          "left": 526,
+          "right": 554,
+          "docW": 390
+        },
+        {
+          "text": "2",
+          "tag": "SPAN",
+          "className": "rpe low",
+          "left": 374,
+          "right": 402,
+          "docW": 390
+        }
+      ],
+      "#/plan": [
+        {
+          "text": "Curl bíceps mancuernas alternado\n6\n›",
+          "tag": "BUTTON",
+          "className": "ex-top",
+          "left": 76,
+          "right": 411,
+          "docW": 390
+        },
+        {
+          "text": "6",
+          "tag": "SPAN",
+          "className": "rpe high",
+          "left": 368,
+          "right": 396,
+          "docW": 390
+        },
+        {
+          "text": "›",
+          "tag": "SPAN",
+          "className": "chev",
+          "left": 406,
+          "right": 411,
+          "docW": 390
+        },
+        {
+          "text": "Sem 1: 3×12/lado · Sem 2–3: 3×12 · Sem 4: 2×10 ↓\n⏱",
+          "tag": "DIV",
+          "className": "ex-meta",
+          "left": 76,
+          "right": 411,
+          "docW": 390
+        },
+        {
+          "text": "Sem 1: 3×12/lado · Sem 2–3: 3×12 · Sem 4: 2×10 ↓",
+          "tag": "SPAN",
+          "className": "chip ",
+          "left": 76,
+          "right": 411,
+          "docW": 390
+        },
+        {
+          "text": "Plancha frontal isométrica",
+          "tag": "SPAN",
+          "className": "ex-name",
+          "left": 76,
+          "right": 457,
+          "docW": 390
+        },
+        {
+          "text": "5",
+          "tag": "SPAN",
+          "className": "rpe mid",
+          "left": 467,
+          "right": 495,
+          "docW": 390
+        },
+        {
+          "text": "2",
+          "tag": "SPAN",
+          "className": "rpe low",
+          "left": 374,
+          "right": 402,
+          "docW": 390
+        }
+      ]
+    }
+  }
+}

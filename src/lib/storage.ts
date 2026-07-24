@@ -40,7 +40,7 @@ const defaultState = (): AppState => ({
   plan: {
     meso: 1,
     week: 1,
-    startDate: new Date().toISOString().slice(0, 10),
+    startDate: todayISO(),
   },
   sessions: [],
   mornings: [],
@@ -67,13 +67,15 @@ export function saveState(state: AppState) {
   localStorage.setItem(KEY, JSON.stringify(state))
 }
 
-export function todayISO() {
-  return new Date().toISOString().slice(0, 10)
+export function todayISO(d = new Date()) {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
 }
 
-/** Day index 0=Mon … 6=Sun based on startDate + current meso/week, OR calendar today mapped to plan day */
+/** Day index 0=Mon … 6=Sun */
 export function calendarDayIndex(d = new Date()): number {
-  // JS: 0=Sun … convert to Mon=0
   return (d.getDay() + 6) % 7
 }
 
@@ -83,4 +85,11 @@ export function globalWeek(meso: number, week: number) {
 
 export function sessionId(date: string, sessionKey: string) {
   return `${date}:${sessionKey}`
+}
+
+export function shiftISO(dateISO: string, days: number) {
+  const [y, m, d] = dateISO.split('-').map(Number)
+  const dt = new Date(y, m - 1, d)
+  dt.setDate(dt.getDate() + days)
+  return todayISO(dt)
 }

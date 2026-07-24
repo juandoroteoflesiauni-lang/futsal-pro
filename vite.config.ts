@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// GitHub Pages project site: https://<user>.github.io/futsal-pro/
+// GitHub Pages needs /futsal-pro/; local/dev must stay at /
+const isPages = process.env.GITHUB_PAGES === 'true'
+
 export default defineConfig({
   plugins: [react()],
-  base: '/futsal-pro/',
+  base: isPages ? '/futsal-pro/' : '/',
 })

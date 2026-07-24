@@ -1,0 +1,106 @@
+[
+  {
+    "viewport": "desktop",
+    "routes": {
+      "#/": {
+        "ok": true,
+        "screenshot": "C:\\Users\\flesi\\App de GYM\\scripts\\test-artifacts\\desktop_hoy.png"
+      },
+      "#/plan": {
+        "ok": true,
+        "screenshot": "C:\\Users\\flesi\\App de GYM\\scripts\\test-artifacts\\desktop_plan.png"
+      },
+      "#/simf": {
+        "ok": true,
+        "screenshot": "C:\\Users\\flesi\\App de GYM\\scripts\\test-artifacts\\desktop_simf.png"
+      },
+      "#/rutina": {
+        "ok": true,
+        "screenshot": "C:\\Users\\flesi\\App de GYM\\scripts\\test-artifacts\\desktop_rutina.png"
+      },
+      "#/progreso": {
+        "ok": true,
+        "screenshot": "C:\\Users\\flesi\\App de GYM\\scripts\\test-artifacts\\desktop_progreso.png"
+      }
+    },
+    "interactions": {
+      "plan_selector": "ok",
+      "expand_exercise": "ok",
+      "check_exercise": "ok",
+      "complete_session": "ok",
+      "morning_complete": "ok",
+      "plan_day": "ok",
+      "simf_tabs": "ok",
+      "progreso": "ok",
+      "nav": "ok"
+    },
+    "overlaps": {
+      "#/": [],
+      "#/plan": [],
+      "#/simf": [],
+      "#/rutina": [],
+      "#/progreso": []
+    },
+    "overflow": {
+      "#/": [],
+      "#/plan": [],
+      "#/simf": [],
+      "#/rutina": [],
+      "#/progreso": []
+    },
+    "console_errors": [],
+    "page_errors": []
+  },
+  {
+    "viewport": "mobile",
+    "routes": {
+      "#/": {
+        "ok": true,
+        "screenshot": "C:\\Users\\flesi\\App de GYM\\scripts\\test-artifacts\\mobile_hoy.png"
+      },
+      "#/plan": {
+        "ok": true,
+        "screenshot": "C:\\Users\\flesi\\App de GYM\\scripts\\test-artifacts\\mobile_plan.png"
+      },
+      "#/simf": {
+        "ok": true,
+        "screenshot": "C:\\Users\\flesi\\App de GYM\\scripts\\test-artifacts\\mobile_simf.png"
+      },
+      "#/rutina": {
+        "ok": true,
+        "screenshot": "C:\\Users\\flesi\\App de GYM\\scripts\\test-artifacts\\mobile_rutina.png"
+      },
+      "#/progreso": {
+        "ok": true,
+        "screenshot": "C:\\Users\\flesi\\App de GYM\\scripts\\test-artifacts\\mobile_progreso.png"
+      }
+    },
+    "interactions": {
+      "plan_selector": "ok",
+      "expand_exercise": "ok",
+      "check_exercise": "ok",
+      "complete_session": "ok",
+      "morning_complete": "ok",
+      "plan_day": "ok",
+      "simf_tabs": "ok",
+      "progreso": "ok",
+      "nav": "ok"
+    },
+    "overlaps": {
+      "#/": [],
+      "#/plan": [],
+      "#/simf": [],
+      "#/rutina": [],
+      "#/progreso": []
+    },
+    "overflow": {
+      "#/": [],
+      "#/plan": [],
+      "#/simf": [],
+      "#/rutina": [],
+      "#/progreso": []
+    },
+    "console_errors": [],
+    "page_errors": []
+  }
+]

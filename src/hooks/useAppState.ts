@@ -4,6 +4,7 @@ import {
   saveState,
   todayISO,
   sessionId,
+  shiftISO,
   type AppState,
   type MorningLog,
   type SessionLog,
@@ -148,13 +149,12 @@ export function useAppState() {
   const completedCount = state.sessions.filter((s) => s.completed).length
   const morningStreak = (() => {
     let streak = 0
-    const d = new Date()
+    let cursor = todayISO()
     for (let i = 0; i < 60; i++) {
-      const iso = d.toISOString().slice(0, 10)
-      const log = state.mornings.find((m) => m.date === iso && m.done)
+      const log = state.mornings.find((m) => m.date === cursor && m.done)
       if (!log) break
       streak++
-      d.setDate(d.getDate() - 1)
+      cursor = shiftISO(cursor, -1)
     }
     return streak
   })()

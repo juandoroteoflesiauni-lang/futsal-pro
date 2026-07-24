@@ -34,57 +34,64 @@ export function ExCard({
 
   return (
     <article className={`ex-card${isAuth ? ' auth' : ''}${done ? ' done' : ''}`}>
-      <div style={{ display: 'flex', alignItems: 'stretch' }}>
-        {onToggle && (
+      <div className="ex-row">
+        {onToggle ? (
           <button
             type="button"
             className={`ex-check${done ? ' on' : ''}`}
-            style={{ margin: '10px 0 10px 12px', alignSelf: 'center' }}
             aria-label={done ? `Desmarcar ${nombre}` : `Marcar ${nombre} como hecho`}
             onClick={onToggle}
           >
             {done ? '✓' : ''}
           </button>
+        ) : (
+          <span className="ex-idx" aria-hidden="true">
+            {idx + 1}
+          </span>
         )}
-        <button type="button" className="ex-top" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-          {!onToggle && <span className="ex-idx">{idx + 1}</span>}
-          <span className="ex-name">
-            {nombre}
-            {isAuth && (
-              <span style={{ marginLeft: 8, fontSize: 10, color: 'var(--warn)', fontFamily: 'var(--mono)', fontWeight: 700 }}>
-                AUTH
-              </span>
-            )}
-          </span>
-          <RpeBadge v={ex.rpe} />
-          <span className={`chev${open ? ' open' : ''}`} aria-hidden="true">
-            ›
-          </span>
-        </button>
-      </div>
-      <div className="ex-meta">
-        {ex.params && <Chip>{ex.params}</Chip>}
-        {ex.rest && ex.rest !== '–' && <Chip>⏱ {ex.rest}</Chip>}
-        <Chip>RPE {ex.rpe}/10</Chip>
-      </div>
-      {open && (
-        <div className="ex-body">
-          <div className="ex-box">
-            <div className="lbl">Técnica</div>
-            <p>{ex.desc}</p>
+        <div className="ex-main">
+          <button
+            type="button"
+            className="ex-top"
+            onClick={() => setOpen((o) => !o)}
+            aria-expanded={open}
+          >
+            <span className="ex-name">
+              {nombre}
+              {isAuth ? (
+                <span className="auth-tag">AUTH</span>
+              ) : null}
+            </span>
+            <RpeBadge v={ex.rpe} />
+            <span className={`chev${open ? ' open' : ''}`} aria-hidden="true">
+              ›
+            </span>
+          </button>
+          <div className="ex-meta">
+            {ex.params ? <Chip>{ex.params}</Chip> : null}
+            {ex.rest && ex.rest !== '–' ? <Chip>⏱ {ex.rest}</Chip> : null}
+            <Chip>RPE {ex.rpe}/10</Chip>
           </div>
-          <div className="ex-grid">
-            <div className="ex-box err">
-              <div className="lbl">Error frecuente</div>
-              <p>{ex.err}</p>
+          {open ? (
+            <div className="ex-body">
+              <div className="ex-box">
+                <div className="lbl">Técnica</div>
+                <p>{ex.desc}</p>
+              </div>
+              <div className="ex-grid">
+                <div className="ex-box err">
+                  <div className="lbl">Error frecuente</div>
+                  <p>{ex.err}</p>
+                </div>
+                <div className="ex-box alt">
+                  <div className="lbl">Alt. rodilla</div>
+                  <p>{ex.alt}</p>
+                </div>
+              </div>
             </div>
-            <div className="ex-box alt">
-              <div className="lbl">Alt. rodilla</div>
-              <p>{ex.alt}</p>
-            </div>
-          </div>
+          ) : null}
         </div>
-      )}
+      </div>
     </article>
   )
 }
@@ -114,16 +121,16 @@ export function BlockSection({
   return (
     <div className="block">
       <button type="button" className="block-head" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
+        <span className="block-head-left">
           <span className={`bar ${bar}`} />
           <span className="block-label">{title}</span>
-          {dur && <span className="block-dur">{dur}</span>}
+          {dur ? <span className="block-dur">{dur}</span> : null}
         </span>
         <span className={`chev${open ? ' open' : ''}`} aria-hidden="true">
           ›
         </span>
       </button>
-      {open && (
+      {open ? (
         <div className="ex-list">
           {exercises.map((ex, i) => (
             <ExCard
@@ -135,7 +142,7 @@ export function BlockSection({
             />
           ))}
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

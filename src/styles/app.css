@@ -42,6 +42,10 @@ body,
   margin: 0;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font);
   background:
@@ -52,6 +56,30 @@ body {
   -webkit-font-smoothing: antialiased;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+  width: auto;
+  height: auto;
+  z-index: 100;
+  padding: 10px 14px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: var(--radius-sm);
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 
 button,
@@ -89,7 +117,11 @@ p {
 @media (max-width: 860px) {
   .app-shell {
     grid-template-columns: 1fr;
-    padding-bottom: calc(var(--nav-h) + var(--safe-b));
+    padding-bottom: calc(var(--nav-h) + var(--safe-b) + 12px);
+  }
+
+  .content {
+    padding-bottom: calc(var(--nav-h) + var(--safe-b) + 28px);
   }
 }
 
@@ -224,6 +256,10 @@ p {
   margin: 0 auto;
 }
 
+#main {
+  scroll-margin-top: calc(var(--top-h) + 12px);
+}
+
 @media (max-width: 860px) {
   .content {
     padding: 16px 14px 24px;
@@ -238,12 +274,13 @@ p {
   right: 0;
   height: calc(var(--nav-h) + var(--safe-b));
   padding: 8px 8px var(--safe-b);
-  background: rgba(20, 25, 22, 0.92);
+  background: rgba(20, 25, 22, 0.96);
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
   z-index: 40;
   grid-template-columns: repeat(5, 1fr);
   gap: 4px;
+  pointer-events: auto;
 }
 
 @media (max-width: 860px) {
@@ -257,14 +294,15 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 2px;
   border-radius: var(--radius-sm);
   color: var(--text-3);
-  font-size: 10px;
+  font-size: 9px;
   font-family: var(--mono);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  padding: 6px;
+  padding: 4px 2px;
+  min-width: 0;
   transition: color 0.15s ease, background 0.15s ease;
 }
 
@@ -291,12 +329,29 @@ p {
   margin-bottom: 18px;
 }
 
+.micro-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
 @media (max-width: 640px) {
   .grid-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-stats .stat:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .micro-grid {
     grid-template-columns: 1fr;
   }
-  .week-row[style*='repeat(5'] {
-    grid-template-columns: repeat(3, 1fr) !important;
+
+  .stat {
+    padding: 12px;
+  }
+
+  .stat-value {
+    font-size: 18px;
   }
 }
 
@@ -335,6 +390,8 @@ p {
   border-radius: var(--radius);
   padding: 16px;
   margin-bottom: 14px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .panel-head {
@@ -373,7 +430,9 @@ p {
   font-family: var(--mono);
   font-size: 11px;
   color: var(--text-2);
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  max-width: 100%;
 }
 
 .chip.accent {
@@ -456,6 +515,17 @@ p {
   grid-template-columns: repeat(7, 1fr);
   gap: 6px;
   margin-bottom: 14px;
+  position: sticky;
+  top: calc(var(--top-h) + 8px);
+  z-index: 10;
+  background: var(--bg);
+  padding: 6px 0;
+}
+
+@media (max-width: 860px) {
+  .day-strip {
+    top: calc(var(--top-h) + 4px);
+  }
 }
 
 .day-btn {
@@ -501,6 +571,7 @@ p {
 .meso-list {
   display: grid;
   gap: 4px;
+  min-width: 0;
 }
 
 .meso-item {
@@ -508,6 +579,7 @@ p {
   align-items: center;
   gap: 10px;
   width: 100%;
+  max-width: 100%;
   text-align: left;
   padding: 10px 12px;
   border-radius: var(--radius-sm);
@@ -515,6 +587,8 @@ p {
   background: transparent;
   cursor: pointer;
   color: var(--text-2);
+  min-width: 0;
+  box-sizing: border-box;
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -575,14 +649,26 @@ p {
   margin-bottom: 14px;
 }
 
+.simf-tabs {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 640px) {
+  .simf-tabs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .week-btn {
   border: 1px solid var(--line);
   background: var(--bg-elevated);
   border-radius: var(--radius-sm);
-  padding: 10px;
+  padding: 10px 6px;
   cursor: pointer;
   font-family: var(--mono);
   font-size: 12px;
+  min-width: 0;
+  overflow: hidden;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
@@ -687,12 +773,23 @@ p {
   background: var(--accent);
 }
 
+.block-head-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
 .block-label {
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .block-dur {
@@ -722,27 +819,44 @@ p {
   opacity: 0.72;
 }
 
+.ex-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.ex-main {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
 .ex-top {
   display: flex;
   align-items: center;
   gap: 10px;
   width: 100%;
-  padding: 10px 12px;
+  padding: 0;
   background: transparent;
   border: none;
   cursor: pointer;
   text-align: left;
   color: inherit;
+  min-width: 0;
 }
 
 .ex-top:focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: -2px;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .ex-check {
   width: 22px;
   height: 22px;
+  margin-top: 2px;
   border-radius: 6px;
   border: 1.5px solid var(--line-strong);
   display: grid;
@@ -771,6 +885,7 @@ p {
 .ex-idx {
   width: 22px;
   height: 22px;
+  margin-top: 2px;
   border-radius: 6px;
   background: var(--bg-muted);
   display: grid;
@@ -787,6 +902,16 @@ p {
   font-weight: 500;
   line-height: 1.35;
   min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.auth-tag {
+  margin-left: 8px;
+  font-size: 10px;
+  color: var(--warn);
+  font-family: var(--mono);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .rpe {
@@ -822,13 +947,13 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  padding: 0 12px 10px;
+  padding: 0;
 }
 
 .ex-body {
-  padding: 0 12px 12px;
+  padding: 10px 0 0;
   border-top: 1px solid var(--line);
-  padding-top: 12px;
+  margin-top: 4px;
   display: grid;
   gap: 8px;
 }
@@ -979,7 +1104,7 @@ p {
 
 .split {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: minmax(200px, 220px) minmax(0, 1fr);
   gap: 16px;
   align-items: start;
 }
@@ -987,6 +1112,11 @@ p {
 @media (max-width: 860px) {
   .split {
     grid-template-columns: 1fr;
+  }
+
+  .split > .panel {
+    position: static !important;
+    top: auto !important;
   }
 }
 

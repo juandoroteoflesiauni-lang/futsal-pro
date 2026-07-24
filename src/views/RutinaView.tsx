@@ -58,55 +58,55 @@ export function RutinaView() {
             </div>
           </div>
           <div className="ex-list">
-            {block.ejercicios.map((ex, i) => {
+            {block.ejercicios.map((ex) => {
               const isOpen = openEx === ex.id
               const isDone = doneIds.has(ex.id)
               return (
                 <article key={ex.id} className={`ex-card${isDone ? ' done' : ''}`}>
-                  <div style={{ display: 'flex', alignItems: 'stretch' }}>
+                  <div className="ex-row">
                     <button
                       type="button"
                       className={`ex-check${isDone ? ' on' : ''}`}
-                      style={{ margin: '10px 0 10px 12px', alignSelf: 'center' }}
                       aria-label={isDone ? `Desmarcar ${ex.nombre}` : `Marcar ${ex.nombre}`}
                       onClick={() => toggleMorning(ex.id, meso)}
                     >
                       {isDone ? '✓' : ''}
                     </button>
-                    <button
-                      type="button"
-                      className="ex-top"
-                      onClick={() => setOpenEx(isOpen ? null : ex.id)}
-                      aria-expanded={isOpen}
-                    >
-                      <span className="ex-idx">{i + 1}</span>
-                      <span className="ex-name">{ex.nombre}</span>
-                      <span className={`chev${isOpen ? ' open' : ''}`} aria-hidden="true">
-                        ›
-                      </span>
-                    </button>
-                  </div>
-                  <div className="ex-meta">
-                    <Chip>{ex.params}</Chip>
-                  </div>
-                  {isOpen && (
-                    <div className="ex-body">
-                      <div className="ex-box">
-                        <div className="lbl">Técnica</div>
-                        <p>{ex.desc}</p>
+                    <div className="ex-main">
+                      <button
+                        type="button"
+                        className="ex-top"
+                        onClick={() => setOpenEx(isOpen ? null : ex.id)}
+                        aria-expanded={isOpen}
+                      >
+                        <span className="ex-name">{ex.nombre}</span>
+                        <span className={`chev${isOpen ? ' open' : ''}`} aria-hidden="true">
+                          ›
+                        </span>
+                      </button>
+                      <div className="ex-meta">
+                        <Chip>{ex.params}</Chip>
                       </div>
-                      <div className="ex-grid">
-                        <div className="ex-box err">
-                          <div className="lbl">Error frecuente</div>
-                          <p>{ex.err}</p>
+                      {isOpen ? (
+                        <div className="ex-body">
+                          <div className="ex-box">
+                            <div className="lbl">Técnica</div>
+                            <p>{ex.desc}</p>
+                          </div>
+                          <div className="ex-grid">
+                            <div className="ex-box err">
+                              <div className="lbl">Error frecuente</div>
+                              <p>{ex.err}</p>
+                            </div>
+                            <div className="ex-box alt">
+                              <div className="lbl">Nota</div>
+                              <p>{ex.nota}</p>
+                            </div>
+                          </div>
                         </div>
-                        <div className="ex-box alt">
-                          <div className="lbl">Nota</div>
-                          <p>{ex.nota}</p>
-                        </div>
-                      </div>
+                      ) : null}
                     </div>
-                  )}
+                  </div>
                 </article>
               )
             })}

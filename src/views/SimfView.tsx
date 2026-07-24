@@ -42,7 +42,7 @@ export function SimfView() {
         </div>
       </div>
 
-      <div className="week-row" style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}>
+      <div className="week-row simf-tabs">
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -235,7 +235,7 @@ export function SimfView() {
       )}
 
       {tab === 'micro' && (
-        <div className="grid-stats" style={{ gridTemplateColumns: '1fr 1fr' }}>
+        <div className="grid-stats micro-grid">
           {SIMF_MICROCICLO.map((m) => (
             <div key={m.momento} className="panel" style={{ marginBottom: 0 }}>
               <div className="chips" style={{ marginBottom: 8 }}>
