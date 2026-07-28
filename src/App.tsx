@@ -5,6 +5,7 @@ import { PlanView } from './views/PlanView'
 import { RutinaView } from './views/RutinaView'
 import { ProgresoView } from './views/ProgresoView'
 import { SimfView } from './views/SimfView'
+import { RunningView } from './views/RunningView'
 import './styles/app.css'
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
           <Route index element={<HoyView />} />
           <Route path="plan" element={<PlanView />} />
           <Route path="simf" element={<SimfView />} />
+          <Route path="running" element={<RunningView />} />
           <Route path="rutina" element={<RutinaView />} />
           <Route path="progreso" element={<ProgresoView />} />
           <Route path="*" element={<Navigate to="/" replace />} />

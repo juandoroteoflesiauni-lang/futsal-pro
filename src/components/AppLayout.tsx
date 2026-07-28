@@ -6,6 +6,7 @@ const NAV = [
   { to: '/', label: 'Hoy', ico: '●', end: true },
   { to: '/plan', label: 'Plan', ico: '▣', end: false },
   { to: '/simf', label: 'SIMF', ico: '◇', end: false },
+  { to: '/running', label: '10K', ico: '→', end: false },
   { to: '/rutina', label: 'Rutina', ico: '◎', end: false },
   { to: '/progreso', label: 'Progreso', ico: '↗', end: false },
 ] as const
@@ -14,6 +15,7 @@ const TITLES: Record<string, string> = {
   '/': 'Hoy',
   '/plan': 'Plan 9 meses',
   '/simf': 'Movimiento SIMF',
+  '/running': 'Running 10K',
   '/rutina': 'Rutina matutina',
   '/progreso': 'Progreso',
 }
@@ -35,7 +37,7 @@ export function AppLayout() {
             <div className="brand-title" translate="no">
               Futsal Pro
             </div>
-            <div className="brand-sub">9 meses · SIMF · retorno</div>
+            <div className="brand-sub">futsal · SIMF · 10K</div>
           </div>
         </div>
         <nav>

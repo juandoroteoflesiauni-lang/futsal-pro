@@ -117,6 +117,16 @@ export function HoyView() {
 
       <div className="panel" style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: 1, minWidth: 180 }}>
+          <h2 className="panel-title">Running 10K</h2>
+          <p className="panel-sub">Plan científico Sub-45/50 · 27 jul → 31 dic.</p>
+        </div>
+        <Link to="/running" className="btn ghost">
+          Abrir 10K
+        </Link>
+      </div>
+
+      <div className="panel" style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ flex: 1, minWidth: 180 }}>
           <h2 className="panel-title">Rutina matutina</h2>
           <p className="panel-sub">
             {todayMorning?.done ? 'Completada hoy ✓' : '15–18 min antes del desayuno'}

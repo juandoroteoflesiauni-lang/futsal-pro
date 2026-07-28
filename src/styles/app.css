@@ -278,7 +278,7 @@ p {
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
   z-index: 40;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 4px;
   pointer-events: auto;
 }
@@ -650,7 +650,7 @@ p {
 }
 
 .simf-tabs {
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 
 @media (max-width: 640px) {
