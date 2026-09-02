@@ -1,4 +1,5 @@
 import type { Exercise } from '../data/program'
+import type { GymExercise } from '../data/runningGymData'
 import { useState, type ReactNode } from 'react'
 
 export function RpeBadge({ v }: { v: number | string }) {
@@ -10,11 +11,17 @@ export function RpeBadge({ v }: { v: number | string }) {
 export function Chip({
   children,
   variant,
+  style,
 }: {
   children: ReactNode
-  variant?: 'accent' | 'warn' | 'ok'
+  variant?: 'accent' | 'warn' | 'ok' | 'danger' | 'info'
+  style?: React.CSSProperties
 }) {
-  return <span className={`chip ${variant ?? ''}`}>{children}</span>
+  return (
+    <span className={`chip ${variant ?? ''}`} style={style}>
+      {children}
+    </span>
+  )
 }
 
 export function ExCard({
@@ -58,9 +65,7 @@ export function ExCard({
           >
             <span className="ex-name">
               {nombre}
-              {isAuth ? (
-                <span className="auth-tag">AUTH</span>
-              ) : null}
+              {isAuth ? <span className="auth-tag">AUTH</span> : null}
             </span>
             <RpeBadge v={ex.rpe} />
             <span className={`chev${open ? ' open' : ''}`} aria-hidden="true">
@@ -90,6 +95,100 @@ export function ExCard({
               </div>
             </div>
           ) : null}
+        </div>
+      </div>
+    </article>
+  )
+}
+
+export function GymExCard({
+  ex,
+  idx,
+  done,
+  onToggle,
+}: {
+  ex: GymExercise
+  idx: number
+  done?: boolean
+  onToggle?: () => void
+}) {
+  const [open, setOpen] = useState(false)
+  const [useSub, setUseSub] = useState(false)
+
+  const activeName = useSub ? ex.sustitucion : ex.nombre
+
+  return (
+    <article className={`ex-card${done ? ' done' : ''}`}>
+      <div className="ex-row">
+        {onToggle ? (
+          <button
+            type="button"
+            className={`ex-check${done ? ' on' : ''}`}
+            aria-label={done ? `Desmarcar ${activeName}` : `Marcar ${activeName} como hecho`}
+            onClick={onToggle}
+          >
+            {done ? '✓' : ''}
+          </button>
+        ) : (
+          <span className="ex-idx" aria-hidden="true">
+            {ex.orden ?? idx + 1}
+          </span>
+        )}
+        <div className="ex-main">
+          <button
+            type="button"
+            className="ex-top"
+            onClick={() => setOpen((o) => !o)}
+            aria-expanded={open}
+          >
+            <span className="ex-name">
+              {activeName}
+              {useSub && <span className="auth-tag" style={{ color: 'var(--warn)' }}>SUST</span>}
+            </span>
+            <Chip variant="accent">{ex.rir_rpe}</Chip>
+            <span className={`chev${open ? ' open' : ''}`} aria-hidden="true">
+              ›
+            </span>
+          </button>
+
+          <div className="ex-meta">
+            <Chip variant="ok">{ex.series} series × {ex.repeticiones}</Chip>
+            <Chip>⏱ Tempo {ex.tempo}</Chip>
+            {ex.descanso && <Chip>Descanso {ex.descanso}</Chip>}
+            <Chip style={{ opacity: 0.8 }}>{ex.patron}</Chip>
+          </div>
+
+          {open && (
+            <div className="ex-body">
+              {ex.notasTecnicas && (
+                <div className="ex-box">
+                  <div className="lbl">Ejecución Técnica y Clave Biomecánica</div>
+                  <p>{ex.notasTecnicas}</p>
+                </div>
+              )}
+
+              <div className="ex-box alt">
+                <div className="lbl" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span>Sustitución Comercial Viable</span>
+                  <button
+                    type="button"
+                    className="btn xs"
+                    style={{ fontSize: 11, padding: '2px 8px' }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setUseSub(!useSub)
+                    }}
+                  >
+                    {useSub ? 'Ver original' : 'Usar sustitución'}
+                  </button>
+                </div>
+                <p>
+                  <strong>{ex.sustitucion}</strong>
+                  {ex.confianza && ` · Confianza: ${ex.confianza}`}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </article>

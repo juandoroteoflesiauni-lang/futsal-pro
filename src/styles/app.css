@@ -1130,6 +1130,74 @@ p {
   transform: rotate(90deg);
 }
 
+.mode-btn {
+  padding: 8px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: var(--bg-muted);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.mode-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.mode-btn.active {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(200, 245, 66, 0.25);
+}
+
+.topbar-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.topbar-mode-toggle:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.btn.xs {
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.chip.danger {
+  background: var(--danger-dim);
+  color: var(--danger);
+  border-color: rgba(224, 122, 110, 0.35);
+}
+
+.chip.info {
+  background: var(--info-dim);
+  color: var(--info);
+  border-color: rgba(126, 184, 212, 0.35);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1138,3 +1206,4 @@ p {
     transition: none !important;
   }
 }
+
