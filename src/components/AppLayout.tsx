@@ -13,9 +13,10 @@ const NAV_FUTSAL = [
 
 const NAV_RUNNING = [
   { to: '/', label: 'Hoy', ico: '●', end: true },
-  { to: '/plan-10k', label: 'Plan 17S', ico: '▣', end: false },
+  { to: '/plan-10k', label: 'Plan 18S', ico: '▣', end: false },
   { to: '/gym-concurrente', label: 'Gimnasio', ico: '⚡', end: false },
   { to: '/protocolos', label: 'Protocolos', ico: '◇', end: false },
+  { to: '/plan-maestro', label: 'Plan Maestro', ico: '📖', end: false },
   { to: '/autorregulacion', label: 'Semáforo', ico: '🚥', end: false },
   { to: '/progreso', label: 'Progreso 10K', ico: '↗', end: false },
 ] as const
@@ -26,9 +27,10 @@ const TITLES: Record<string, string> = {
   '/simf': 'Movimiento SIMF',
   '/rutina': 'Rutina Matutina',
   '/progreso': 'Progreso & Historial',
-  '/plan-10k': 'Plan Maestro 17S (10K)',
+  '/plan-10k': 'Plan Maestro 18S (10K)',
   '/gym-concurrente': 'Gimnasio Concurrente & Sóleo',
   '/protocolos': 'Protocolos & Biomecánica',
+  '/plan-maestro': 'Plan Maestro Integral (10K y Recomposición)',
   '/autorregulacion': 'Semáforo & Recomposición',
   '/running': 'Plan de Running',
 }
@@ -55,7 +57,7 @@ export function AppLayout() {
               {isFutsal ? 'Futsal Pro' : 'Running 10K + GYM'}
             </div>
             <div className="brand-sub">
-              {isFutsal ? 'futsal · SIMF · rehabilitación' : '10K Sub-55/59 · recomposición · 17S'}
+              {isFutsal ? 'futsal · SIMF · rehabilitación' : '10K Sub-55/59 · recomposición · 18S'}
             </div>
           </div>
         </div>
@@ -112,7 +114,7 @@ export function AppLayout() {
           ) : (
             <>
               <div>
-                Semana 10K <strong style={{ color: 'var(--text)' }}>{runWeek}/17</strong>
+                Semana 10K <strong style={{ color: 'var(--text)' }}>{runWeek}/18</strong>
               </div>
               <div>
                 Semáforo Hoy:{' '}
@@ -148,7 +150,7 @@ export function AppLayout() {
             {isFutsal ? (
               <Chip variant="accent">MC{state.plan.meso} · S{state.plan.week}</Chip>
             ) : (
-              <Chip variant="accent">MC{state.runningPlan.meso} · Sem {state.runningPlan.week}/17</Chip>
+              <Chip variant="accent">Fase {state.runningPlan.meso} · Sem {state.runningPlan.week}/18</Chip>
             )}
           </div>
         </header>

@@ -9,6 +9,7 @@ import { PlanRunningView } from './views/PlanRunningView'
 import { GymRunningView } from './views/GymRunningView'
 import { ProtocolsView } from './views/ProtocolsView'
 import { AutoregulationView } from './views/AutoregulationView'
+import { MasterPlanView } from './views/MasterPlanView'
 import './styles/app.css'
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="plan-10k" element={<PlanRunningView />} />
           <Route path="gym-concurrente" element={<GymRunningView />} />
           <Route path="protocolos" element={<ProtocolsView />} />
+          <Route path="plan-maestro" element={<MasterPlanView />} />
           <Route path="autorregulacion" element={<AutoregulationView />} />
           {/* Progress (Mode-aware) */}
           <Route path="progreso" element={<ProgresoView />} />

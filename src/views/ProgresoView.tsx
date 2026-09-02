@@ -62,10 +62,10 @@ export function ProgresoView() {
     : '—'
 
   const runWeekNum = state.runningPlan.week
-  const runPlanPct = Math.round((runWeekNum / 17) * 100)
+  const runPlanPct = Math.round((runWeekNum / 18) * 100)
 
   // Benchmarks Interactive Logging
-  const [bmId, setBmId] = useState<'milla' | '3k' | '5k' | '2k'>('5k')
+  const [bmId, setBmId] = useState<'inicial' | 'bm1' | '5k' | 'bm3' | '10k' | 'milla' | '3k' | '2k'>('5k')
   const [bmTime, setBmTime] = useState('')
   const [bmPace, setBmPace] = useState('')
   const [bmNotes, setBmNotes] = useState('')
@@ -74,13 +74,13 @@ export function ProgresoView() {
     if (!bmTime) return
     let targetTier: 'A' | 'B' | 'C' | undefined = undefined
 
-    // 5K Benchmark key logic:
+    // 5K Benchmark key logic (Riegel 2.085x):
     if (bmId === '5k') {
       const parts = bmTime.split(':').map(Number)
       const totalSeconds = parts.length === 2 ? parts[0] * 60 + parts[1] : Number(bmTime) * 60
-      if (totalSeconds < 26 * 60 + 30) {
+      if (totalSeconds <= 28 * 60) {
         targetTier = 'A'
-      } else if (totalSeconds <= 28 * 60 + 30) {
+      } else if (totalSeconds <= 30 * 60) {
         targetTier = 'B'
       } else {
         targetTier = 'C'
@@ -106,9 +106,10 @@ export function ProgresoView() {
   // --------------------------------------------------
   if (!isFutsal) {
     const b5k = state.benchmarks['5k']
-    const bMilla = state.benchmarks['milla']
-    const b3k = state.benchmarks['3k']
-    const b2k = state.benchmarks['2k']
+    const bInicial = state.benchmarks['inicial']
+    const b3k = state.benchmarks['bm1'] || state.benchmarks['3k']
+    const bSim5k = state.benchmarks['bm3'] || state.benchmarks['2k']
+    const b10k = state.benchmarks['10k']
 
     return (
       <>
@@ -118,7 +119,7 @@ export function ProgresoView() {
             <div className="stat-label">Camino al 31 Dic</div>
             <div className="stat-value">{runPlanPct}%</div>
             <div className="stat-hint">
-              Semana {runWeekNum}/17 · {MESOCICLOS_10K[state.runningPlan.meso - 1]?.nombre}
+              Semana {runWeekNum}/18 · {MESOCICLOS_10K[state.runningPlan.meso - 1]?.nombre}
             </div>
             <div className="progress-bar" aria-hidden="true">
               <span style={{ width: `${runPlanPct}%` }} />
@@ -138,11 +139,11 @@ export function ProgresoView() {
             </div>
             <div className="stat-hint">
               {b5k?.targetTier === 'A'
-                ? '55:00–56:59 min (5:30–5:41/km)'
+                ? '55:00–58:00 min (5:30–5:48/km)'
                 : b5k?.targetTier === 'B'
-                ? '57:00–59:59 min (5:42–5:59/km)'
+                ? '59:00–62:00 min (5:54–6:12/km)'
                 : b5k?.targetTier === 'C'
-                ? '60:00–64:59 min (6:00–6:30/km)'
+                ? '63:00–66:00 min (6:18–6:36/km)'
                 : '31 Dic · Meta 55:00–59:00 min'}
             </div>
           </div>
@@ -164,21 +165,21 @@ export function ProgresoView() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14, marginBottom: 20 }}>
-            {/* Test 1: Milla */}
+            {/* Test 1: Inicial */}
             <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 14 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                <strong style={{ fontSize: 14 }}>Benchmark 1: 1 Milla (Sem 4)</strong>
-                <Chip variant={bMilla ? 'ok' : undefined}>{bMilla ? 'Hecho' : 'Sem 4'}</Chip>
+                <strong style={{ fontSize: 14 }}>BM Inicial: WBLT & Sóleo (Sem 2)</strong>
+                <Chip variant={bInicial ? 'ok' : undefined}>{bInicial ? 'Hecho' : '09/09'}</Chip>
               </div>
               <div style={{ fontSize: 13, color: 'var(--text-2)' }}>
-                {bMilla ? (
+                {bInicial ? (
                   <>
-                    <div>Tiempo: <strong style={{ color: 'var(--text)' }}>{bMilla.time}</strong></div>
-                    {bMilla.pace && <div>Ritmo: {bMilla.pace}</div>}
-                    <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {bMilla.date}</div>
+                    <div>Valor: <strong style={{ color: 'var(--text)' }}>{bInicial.time}</strong></div>
+                    {bInicial.notes && <div style={{ fontSize: 11, marginTop: 4 }}>{bInicial.notes}</div>}
+                    <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {bInicial.date}</div>
                   </>
                 ) : (
-                  'Meta: < 9:00 min (< 5:35/km). Evaluación de VAM inicial.'
+                  'Flexión dorsal WBLT ≥ 8 cm y carga 10RM de sóleo (RIR 2).'
                 )}
               </div>
             </div>
@@ -186,8 +187,8 @@ export function ProgresoView() {
             {/* Test 2: 3K */}
             <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 14 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                <strong style={{ fontSize: 14 }}>Benchmark 2: Test 3K (Sem 8)</strong>
-                <Chip variant={b3k ? 'ok' : undefined}>{b3k ? 'Hecho' : 'Sem 8'}</Chip>
+                <strong style={{ fontSize: 14 }}>Benchmark 1: Test 3K (Sem 6)</strong>
+                <Chip variant={b3k ? 'ok' : undefined}>{b3k ? 'Hecho' : '10/10'}</Chip>
               </div>
               <div style={{ fontSize: 13, color: 'var(--text-2)' }}>
                 {b3k ? (
@@ -197,7 +198,7 @@ export function ProgresoView() {
                     <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {b3k.date}</div>
                   </>
                 ) : (
-                  'Meta: < 17:15 min (< 5:45/km). Calibra velocidad umbral.'
+                  '< 18:30 min (Z2 7:00–7:15) · 18:30–20:30 (Z2 7:15–7:30) · > 21:00 (Z2 7:30–7:45)'
                 )}
               </div>
             </div>
@@ -205,8 +206,8 @@ export function ProgresoView() {
             {/* Test 3: 5K Clave */}
             <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 14, border: '1px solid var(--accent)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                <strong style={{ fontSize: 14, color: 'var(--accent)' }}>★ Benchmark 3: 5K Clave (Sem 12)</strong>
-                <Chip variant={b5k ? 'accent' : 'warn'}>{b5k ? `Obj ${b5k.targetTier ?? 'Validado'}` : 'CLAVE'}</Chip>
+                <strong style={{ fontSize: 14, color: 'var(--accent)' }}>★ BM 2: Test 5K Clave (Sem 11)</strong>
+                <Chip variant={b5k ? 'accent' : 'warn'}>{b5k ? `Obj ${b5k.targetTier ?? 'Validado'}` : '14/11'}</Chip>
               </div>
               <div style={{ fontSize: 13, color: 'var(--text-2)' }}>
                 {b5k ? (
@@ -216,25 +217,44 @@ export function ProgresoView() {
                     <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {b5k.date}</div>
                   </>
                 ) : (
-                  '< 26:30 min = Obj A | 26:31–28:30 min = Obj B | > 28:31 min = Obj C'
+                  '≤ 28:00 = Obj A (55–58m) | 28:01–30:00 = Obj B (59–62m) | > 30:00 = Obj C (63–66m)'
                 )}
               </div>
             </div>
 
-            {/* Test 4: 2K Z4 */}
+            {/* Test 4: Simulación 5K a Ritmo 10K */}
             <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 14 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                <strong style={{ fontSize: 14 }}>Benchmark 4: 2K Z4 (Sem 16)</strong>
-                <Chip variant={b2k ? 'ok' : undefined}>{b2k ? 'Hecho' : 'Sem 16'}</Chip>
+                <strong style={{ fontSize: 14 }}>BM 3: Simulación 5K (Sem 15)</strong>
+                <Chip variant={bSim5k ? 'ok' : undefined}>{bSim5k ? 'Hecho' : '12/12'}</Chip>
               </div>
               <div style={{ fontSize: 13, color: 'var(--text-2)' }}>
-                {b2k ? (
+                {bSim5k ? (
                   <>
-                    <div>Tiempo: <strong style={{ color: 'var(--text)' }}>{b2k.time}</strong></div>
-                    <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {b2k.date}</div>
+                    <div>Tiempo: <strong style={{ color: 'var(--text)' }}>{bSim5k.time}</strong></div>
+                    <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {bSim5k.date}</div>
                   </>
                 ) : (
-                  'Confirmación del ritmo de salida de carrera (RPE ≤ 7).'
+                  '5 km continuos a ritmo objetivo de 10K (5:35–5:45/km, RPE ≤ 7).'
+                )}
+              </div>
+            </div>
+
+            {/* Test 5: Día D Carrera 10K */}
+            <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 14, border: '1px solid var(--ok)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                <strong style={{ fontSize: 14, color: 'var(--ok)' }}>🏁 Día D: Carrera 10K (Sem 18)</strong>
+                <Chip variant={b10k ? 'ok' : 'info'}>{b10k ? '¡COMPLETADA!' : '31/12'}</Chip>
+              </div>
+              <div style={{ fontSize: 13, color: 'var(--text-2)' }}>
+                {b10k ? (
+                  <>
+                    <div>Tiempo Oficial: <strong style={{ color: 'var(--ok)', fontSize: 15 }}>{b10k.time}</strong></div>
+                    {b10k.pace && <div>Ritmo Medio: {b10k.pace}</div>}
+                    <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {b10k.date}</div>
+                  </>
+                ) : (
+                  'Carrera Oficial San Silvestre 10.0 km. Meta: 55:00–59:00 min.'
                 )}
               </div>
             </div>
@@ -252,10 +272,11 @@ export function ProgresoView() {
                   onChange={(e) => setBmId(e.target.value as any)}
                   style={{ width: '100%', padding: '6px 10px', background: 'var(--bg-muted)', border: '1px solid var(--line-strong)', borderRadius: 'var(--radius-sm)', color: 'var(--text)' }}
                 >
-                  <option value="milla">Benchmark 1: 1 Milla / 1.6 km (Sem 4)</option>
-                  <option value="3k">Benchmark 2: Test 3K (Sem 8)</option>
-                  <option value="5k">★ Benchmark 3: Test 5K Clave (Sem 12)</option>
-                  <option value="2k">Benchmark 4: Test 2K Z4 (Sem 16)</option>
+                  <option value="inicial">BM Inicial: WBLT Tobillo & Sóleo (Sem 2 · 09/09)</option>
+                  <option value="bm1">Benchmark 1: Test 3K en Pista (Sem 6 · 10/10)</option>
+                  <option value="5k">★ Benchmark 2: Test Umbral 5K Clave (Sem 11 · 14/11)</option>
+                  <option value="bm3">Benchmark 3: Simulación 5K a Ritmo 10K (Sem 15 · 12/12)</option>
+                  <option value="10k">★ Día D: Carrera 10K San Silvestre (Sem 18 · 31/12)</option>
                 </select>
               </div>
 

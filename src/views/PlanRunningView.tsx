@@ -54,7 +54,7 @@ export function PlanRunningView() {
         </div>
 
         <div className="stat-label" style={{ margin: '16px 0 8px' }}>
-          Semana del Plan 10K (1 a 17)
+          Semana del Plan 10K (1 a 18)
         </div>
         <div
           className="week-row"
