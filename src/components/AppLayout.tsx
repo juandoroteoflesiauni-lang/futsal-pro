@@ -17,7 +17,7 @@ const NAV_RUNNING = [
   { to: '/gym-concurrente', label: 'Gimnasio', ico: '⚡', end: false },
   { to: '/protocolos', label: 'Protocolos', ico: '◇', end: false },
   { to: '/autorregulacion', label: 'Semáforo', ico: '🚥', end: false },
-  { to: '/progreso', label: 'Progreso 21K', ico: '↗', end: false },
+  { to: '/progreso', label: 'Progreso 10K', ico: '↗', end: false },
 ] as const
 
 const TITLES: Record<string, string> = {
@@ -26,7 +26,7 @@ const TITLES: Record<string, string> = {
   '/simf': 'Movimiento SIMF',
   '/rutina': 'Rutina Matutina',
   '/progreso': 'Progreso & Historial',
-  '/plan-10k': 'Plan Maestro 17S (Media Maratón 21.1K)',
+  '/plan-10k': 'Plan Maestro 17S (10K)',
   '/gym-concurrente': 'Gimnasio Concurrente & Sóleo',
   '/protocolos': 'Protocolos & Biomecánica',
   '/autorregulacion': 'Semáforo & Recomposición',
@@ -38,7 +38,7 @@ export function AppLayout() {
   const loc = useLocation()
   const isFutsal = state.activeMode === 'futsal'
   const navItems = isFutsal ? NAV_FUTSAL : NAV_RUNNING
-  const title = TITLES[loc.pathname] ?? (isFutsal ? 'Futsal Pro' : 'Media Maratón 21.1K & GYM')
+  const title = TITLES[loc.pathname] ?? (isFutsal ? 'Futsal Pro' : 'Running 10K & GYM')
   const gWeek = globalWeek(state.plan.meso, state.plan.week)
   const runWeek = state.runningPlan.week
 
@@ -48,14 +48,14 @@ export function AppLayout() {
         {/* Brand */}
         <div className="brand">
           <div className="brand-mark" translate="no" style={{ background: isFutsal ? 'var(--accent)' : '#4ea8de', color: '#0c0f0e' }}>
-            {isFutsal ? 'FP' : '21K'}
+            {isFutsal ? 'FP' : '10K'}
           </div>
           <div>
             <div className="brand-title" translate="no">
-              {isFutsal ? 'Futsal Pro' : 'Media Maratón + GYM'}
+              {isFutsal ? 'Futsal Pro' : 'Running 10K + GYM'}
             </div>
             <div className="brand-sub">
-              {isFutsal ? 'futsal · SIMF · rehabilitación' : '21.1K · recomposición · 17S'}
+              {isFutsal ? 'futsal · SIMF · rehabilitación' : '10K Sub-55/59 · recomposición · 17S'}
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@ export function AppLayout() {
           ) : (
             <>
               <div>
-                Semana 21K <strong style={{ color: 'var(--text)' }}>{runWeek}/17</strong>
+                Semana 10K <strong style={{ color: 'var(--text)' }}>{runWeek}/17</strong>
               </div>
               <div>
                 Semáforo Hoy:{' '}
@@ -121,7 +121,7 @@ export function AppLayout() {
                 </strong>
               </div>
               <div>
-                Sesiones 21K <strong style={{ color: 'var(--text)' }}>{completedCount}</strong>
+                Sesiones 10K <strong style={{ color: 'var(--text)' }}>{completedCount}</strong>
               </div>
             </>
           )}

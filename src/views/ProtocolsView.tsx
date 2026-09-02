@@ -24,7 +24,7 @@ export function ProtocolsView() {
           <div>
             <div className="chips" style={{ marginBottom: 8 }}>
               <Chip variant="accent">Protocolos Maestros</Chip>
-              <Chip>Media Maratón 21.1K</Chip>
+              <Chip>Carrera 10K</Chip>
               <Chip>FRC & Biomecánica</Chip>
             </div>
             <h2 className="panel-title">Protocolos Técnicos, Movilidad & Biomecánica</h2>
@@ -432,10 +432,10 @@ export function ProtocolsView() {
 
             <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 16 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                <span style={{ fontWeight: 600 }}>Ritmo Media Maratón (6:50–7:00 min/km)</span>
-                <Chip variant="accent">168 – 172 ppm</Chip>
+                <span style={{ fontWeight: 600 }}>Ritmo 10K Objetivo (5:30–5:54 min/km)</span>
+                <Chip variant="accent">168 – 174 ppm</Chip>
               </div>
-              <p style={{ margin: 0, fontSize: 13, color: 'var(--text-2)' }}>Ritmo económico metronómico con menor tiempo de contacto sobre el antepie.</p>
+              <p style={{ margin: 0, fontSize: 13, color: 'var(--text-2)' }}>Cadencia óptima a ritmo de competición de 10K (meta 55–59 min).</p>
             </div>
 
             <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 16 }}>

@@ -180,7 +180,7 @@ export function HoyView() {
         <div className="panel">
           <div className="panel-head">
             <div>
-              <h2 className="panel-title">Dónde estás en el Plan 21K</h2>
+              <h2 className="panel-title">Dónde estás en el Plan 10K</h2>
               <p className="panel-sub">Semana actual: S{runWeekNum}/17 · {runningWeekData.faseNombre}</p>
             </div>
           </div>

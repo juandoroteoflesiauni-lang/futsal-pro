@@ -112,7 +112,7 @@ export function ProgresoView() {
 
     return (
       <>
-        {/* Estadísticas Globales 21K */}
+        {/* Estadísticas Globales 10K */}
         <div className="grid-stats">
           <div className="stat">
             <div className="stat-label">Camino al 31 Dic</div>
@@ -132,12 +132,18 @@ export function ProgresoView() {
             </div>
           </div>
           <div className="stat">
-            <div className="stat-label">Objetivo Media Maratón</div>
+            <div className="stat-label">Objetivo 10K</div>
             <div className="stat-value" style={{ fontSize: 20 }}>
-              21,097 km
+              {b5k?.targetTier ? `Obj ${b5k.targetTier}` : '55–59 min'}
             </div>
             <div className="stat-hint">
-              31 Diciembre 2026 · Ritmo 6:50–7:00/km
+              {b5k?.targetTier === 'A'
+                ? '55:00–56:59 min (5:30–5:41/km)'
+                : b5k?.targetTier === 'B'
+                ? '57:00–59:59 min (5:42–5:59/km)'
+                : b5k?.targetTier === 'C'
+                ? '60:00–64:59 min (6:00–6:30/km)'
+                : '31 Dic · Meta 55:00–59:00 min'}
             </div>
           </div>
         </div>
@@ -148,40 +154,40 @@ export function ProgresoView() {
             <div>
               <div className="chips" style={{ marginBottom: 6 }}>
                 <Chip variant="accent">Pruebas de Campo</Chip>
-                <Chip>Hitos del Macrociclo</Chip>
+                <Chip>VAM & Zonas 10K</Chip>
               </div>
-              <h2 className="panel-title">Hitos & Benchmarks (Media Maratón 21.1K)</h2>
+              <h2 className="panel-title">Benchmarks Oficiales (Carrera 10K)</h2>
               <p className="panel-sub">
-                Evaluaciones objetivas de movilidad, tolerancia al impacto, umbral y tiradas largas para validar la progresión hacia los 21,1 km.
+                Evaluaciones objetivas en pista/asfalto para recalcular zonas y validar el escenario objetivo de 10K para el 31 de Diciembre.
               </p>
             </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14, marginBottom: 20 }}>
-            {/* Test 1: Movilidad & WBLT */}
+            {/* Test 1: Milla */}
             <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 14 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                <strong style={{ fontSize: 14 }}>Hito 1: WBLT Tobillo (Sem 1)</strong>
-                <Chip variant={bMilla ? 'ok' : undefined}>{bMilla ? 'Hecho' : 'Sem 1'}</Chip>
+                <strong style={{ fontSize: 14 }}>Benchmark 1: 1 Milla (Sem 4)</strong>
+                <Chip variant={bMilla ? 'ok' : undefined}>{bMilla ? 'Hecho' : 'Sem 4'}</Chip>
               </div>
               <div style={{ fontSize: 13, color: 'var(--text-2)' }}>
                 {bMilla ? (
                   <>
-                    <div>Resultado: <strong style={{ color: 'var(--text)' }}>{bMilla.time}</strong></div>
-                    {bMilla.pace && <div>Detalle: {bMilla.pace}</div>}
+                    <div>Tiempo: <strong style={{ color: 'var(--text)' }}>{bMilla.time}</strong></div>
+                    {bMilla.pace && <div>Ritmo: {bMilla.pace}</div>}
                     <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {bMilla.date}</div>
                   </>
                 ) : (
-                  'Meta: WBLT ≥ 10–12 cm. Tolerancia al CA-CO 1:1.'
+                  'Meta: < 9:00 min (< 5:35/km). Evaluación de VAM inicial.'
                 )}
               </div>
             </div>
 
-            {/* Test 2: Hito 10K */}
+            {/* Test 2: 3K */}
             <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 14 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                <strong style={{ fontSize: 14 }}>Hito 2: Tirada Larga 10K (Sem 7)</strong>
-                <Chip variant={b3k ? 'ok' : undefined}>{b3k ? 'Hecho' : 'Sem 7'}</Chip>
+                <strong style={{ fontSize: 14 }}>Benchmark 2: Test 3K (Sem 8)</strong>
+                <Chip variant={b3k ? 'ok' : undefined}>{b3k ? 'Hecho' : 'Sem 8'}</Chip>
               </div>
               <div style={{ fontSize: 13, color: 'var(--text-2)' }}>
                 {b3k ? (
@@ -191,35 +197,35 @@ export function ProgresoView() {
                     <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {b3k.date}</div>
                   </>
                 ) : (
-                  'Meta: 10 km continuos @ 7:45 min/km en Z2.'
+                  'Meta: < 17:15 min (< 5:45/km). Calibra velocidad umbral.'
                 )}
               </div>
             </div>
 
-            {/* Test 3: Tempo Extensivo */}
+            {/* Test 3: 5K Clave */}
             <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 14, border: '1px solid var(--accent)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                <strong style={{ fontSize: 14, color: 'var(--accent)' }}>★ Hito 3: Tempo 3x10m (Sem 11)</strong>
-                <Chip variant={b5k ? 'accent' : 'warn'}>{b5k ? 'Completado' : 'CLAVE'}</Chip>
+                <strong style={{ fontSize: 14, color: 'var(--accent)' }}>★ Benchmark 3: 5K Clave (Sem 12)</strong>
+                <Chip variant={b5k ? 'accent' : 'warn'}>{b5k ? `Obj ${b5k.targetTier ?? 'Validado'}` : 'CLAVE'}</Chip>
               </div>
               <div style={{ fontSize: 13, color: 'var(--text-2)' }}>
                 {b5k ? (
                   <>
                     <div>Tiempo: <strong style={{ color: 'var(--text)' }}>{b5k.time}</strong></div>
-                    {b5k.pace && <div>Ritmo: {b5k.pace}</div>}
+                    <div>Escenario: <strong style={{ color: 'var(--accent)' }}>Objetivo {b5k.targetTier ?? 'B'}</strong></div>
                     <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {b5k.date}</div>
                   </>
                 ) : (
-                  'Bloques de 10 min a ritmo umbral 6:30 min/km (RPE 6–7).'
+                  '< 26:30 min = Obj A | 26:31–28:30 min = Obj B | > 28:31 min = Obj C'
                 )}
               </div>
             </div>
 
-            {/* Test 4: Pico 17.5 km */}
+            {/* Test 4: 2K Z4 */}
             <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 14 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                <strong style={{ fontSize: 14 }}>Hito 4: Tirada Pico 17.5 km (Sem 14)</strong>
-                <Chip variant={b2k ? 'ok' : undefined}>{b2k ? 'Hecho' : 'Sem 14'}</Chip>
+                <strong style={{ fontSize: 14 }}>Benchmark 4: 2K Z4 (Sem 16)</strong>
+                <Chip variant={b2k ? 'ok' : undefined}>{b2k ? 'Hecho' : 'Sem 16'}</Chip>
               </div>
               <div style={{ fontSize: 13, color: 'var(--text-2)' }}>
                 {b2k ? (
@@ -228,7 +234,7 @@ export function ProgresoView() {
                     <div style={{ fontSize: 11, marginTop: 4 }}>Fecha: {b2k.date}</div>
                   </>
                 ) : (
-                  'Tirada larga cumbre de 17.5 km (120 min) antes del tapering.'
+                  'Confirmación del ritmo de salida de carrera (RPE ≤ 7).'
                 )}
               </div>
             </div>
@@ -236,29 +242,29 @@ export function ProgresoView() {
 
           {/* Formulario para registrar Benchmark */}
           <div className="panel" style={{ background: 'var(--bg-elevated)', padding: 16 }}>
-            <h3 style={{ margin: '0 0 12px', fontSize: 15 }}>Registrar Resultado de Hito / Benchmark</h3>
+            <h3 style={{ margin: '0 0 12px', fontSize: 15 }}>Registrar Resultado de Benchmark</h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12, marginBottom: 12 }}>
               <div>
-                <label htmlFor="bmid" style={{ display: 'block', fontSize: 12, marginBottom: 4, color: 'var(--text-2)' }}>Prueba / Hito:</label>
+                <label htmlFor="bmid" style={{ display: 'block', fontSize: 12, marginBottom: 4, color: 'var(--text-2)' }}>Prueba:</label>
                 <select
                   id="bmid"
                   value={bmId}
                   onChange={(e) => setBmId(e.target.value as any)}
                   style={{ width: '100%', padding: '6px 10px', background: 'var(--bg-muted)', border: '1px solid var(--line-strong)', borderRadius: 'var(--radius-sm)', color: 'var(--text)' }}
                 >
-                  <option value="milla">Hito 1: WBLT Tobillo / Test CA-CO (Sem 1)</option>
-                  <option value="3k">Hito 2: Tirada Larga 10K (Sem 7)</option>
-                  <option value="5k">★ Hito 3: Tempo 3x10m Umbral (Sem 11)</option>
-                  <option value="2k">Hito 4: Tirada Pico 17.5 km (Sem 14)</option>
+                  <option value="milla">Benchmark 1: 1 Milla / 1.6 km (Sem 4)</option>
+                  <option value="3k">Benchmark 2: Test 3K (Sem 8)</option>
+                  <option value="5k">★ Benchmark 3: Test 5K Clave (Sem 12)</option>
+                  <option value="2k">Benchmark 4: Test 2K Z4 (Sem 16)</option>
                 </select>
               </div>
 
               <div>
-                <label htmlFor="bmtime" style={{ display: 'block', fontSize: 12, marginBottom: 4, color: 'var(--text-2)' }}>Tiempo / Medida:</label>
+                <label htmlFor="bmtime" style={{ display: 'block', fontSize: 12, marginBottom: 4, color: 'var(--text-2)' }}>Tiempo Oficial (mm:ss):</label>
                 <input
                   id="bmtime"
                   type="text"
-                  placeholder="ej. 12 cm WBLT o 72:30 min"
+                  placeholder="ej. 27:15"
                   value={bmTime}
                   onChange={(e) => setBmTime(e.target.value)}
                   style={{ width: '100%', padding: '6px 10px', background: 'var(--bg-muted)', border: '1px solid var(--line-strong)', borderRadius: 'var(--radius-sm)', color: 'var(--text)' }}
@@ -266,11 +272,11 @@ export function ProgresoView() {
               </div>
 
               <div>
-                <label htmlFor="bmpace" style={{ display: 'block', fontSize: 12, marginBottom: 4, color: 'var(--text-2)' }}>Ritmo / Sensaciones:</label>
+                <label htmlFor="bmpace" style={{ display: 'block', fontSize: 12, marginBottom: 4, color: 'var(--text-2)' }}>Ritmo Medio (opcional):</label>
                 <input
                   id="bmpace"
                   type="text"
-                  placeholder="ej. 6:30 min/km RPE 6"
+                  placeholder="ej. 5:27 min/km"
                   value={bmPace}
                   onChange={(e) => setBmPace(e.target.value)}
                   style={{ width: '100%', padding: '6px 10px', background: 'var(--bg-muted)', border: '1px solid var(--line-strong)', borderRadius: 'var(--radius-sm)', color: 'var(--text)' }}
@@ -279,7 +285,7 @@ export function ProgresoView() {
             </div>
 
             <button type="button" className="btn primary" onClick={handleSaveBenchmark}>
-              Guardar Hito
+              Guardar y Calcular Escenario 10K
             </button>
           </div>
         </div>
@@ -288,7 +294,7 @@ export function ProgresoView() {
         <div className="panel">
           <div className="panel-head">
             <div>
-              <h2 className="panel-title">Fecha de Inicio del Macrociclo 21K</h2>
+              <h2 className="panel-title">Fecha de Inicio del Macrociclo 10K</h2>
               <p className="panel-sub">Fecha del primer lunes de la preparación hacia el 31 de Diciembre de 2026.</p>
             </div>
           </div>
